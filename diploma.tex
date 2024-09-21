@@ -1,0 +1,282 @@
+\documentclass[utf8,14pt,a4paper,oneside,russian]{book}
+\usepackage[14pt]{extsizes}
+\usepackage{longtable}
+
+%===========
+%=Кодировка=
+%===========
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[main=russian, english]{babel}
+
+%===============
+%=Римские цифры=
+%===============
+\newcommand{\RNumb}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+%===================
+%=Разметка страницы=
+%===================
+\usepackage[left=3cm, right=1cm, top=2cm, bottom=2cm, headheight=14pt, headsep=1cm, footskip=1cm]{geometry}
+\pagestyle{plain}
+\linespread{1.1} %Межстрочный интервад
+\setlength{\parindent}{1.25cm} %Абзацный отступ
+\setlength{\parskip}{0em} %Интервал между абзацами
+\usepackage{indentfirst}
+
+\usepackage{misccorr}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{xcolor} %пакет для работы с цветом
+\usepackage{colortbl} %пакет для работы с цветом в таблицах
+
+%===========
+%=Заголовки=
+%===========
+\usepackage{titlesec}
+
+\titleformat{\section}{\centering\large\bfseries}{\thesection.}{0.5em}{\MakeUppercase}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.~#1}}
+\titlespacing{\section}{0em}{2em}{1em}
+
+\titleformat{\subsection}{\centering\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\titlespacing{\subsection}{0em}{1.25em}{0.5em}
+
+\titlespacing{\paragraph}{0em}{1.05em}{0.25em}
+
+%=======
+%=Языки=
+%=======
+\usepackage{algorithm} %пакеты для работы с алгоритмами
+\usepackage{algpseudocode}
+
+\usepackage{listings}
+
+\usepackage{listings}
+\lstdefinelanguage
+{Assembler}
+{morekeywords={CDQE,CQO,CMPSQ,CMPXCHG16B,JRCXZ,LODSQ,MOVSXD, %
+		POPFQ,PUSHFQ,SCASQ,STOSQ,IRETQ,RDTSCP,SWAPGS, %
+		rax,rdx,rcx,rbx,rsi,rdi,rsp,rbp, %
+		r8,r8d,r8w,r8b,r9,r9d,r9w,r9b, %
+		r10,r10d,r10w,r10b,r11,r11d,r11w,r11b, %
+		r12,r12d,r12w,r12b,r13,r13d,r13w,r13b, %
+		r14,r14d,r14w,r14b,r15,r15d,r15w,r15b, mov, times, bits, xor, int, cmp, dw, jmp, jz, inc, db}} % etc.
+
+\lstloadlanguages{C, Python, Assembler, Java}
+
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{gr}{rgb}{0.97, 0.97, 0.97}
+
+\lstset{language=Assembler,
+	extendedchars=true,
+	belowcaptionskip=5pt,
+	backgroundcolor=\color{gr},
+	basicstyle=\ttfamily\normalsize,
+	breakatwhitespace=false,         
+	breaklines=true, 
+	%escapechar=|,
+	%frame=tb,
+	numbers=left,                          
+	numberstyle=\small\color{codegray},         
+	stepnumber=1,                         
+	numbersep=5pt,
+	commentstyle=\itshape,
+	stringstyle=\bfseries,
+	keepspaces=true,
+	showstringspaces=false,
+	tabsize=2,
+}
+
+%============
+%=Содержание=
+%============
+\usepackage{titletoc}
+\makeatletter
+\renewcommand{\tableofcontents}{\section{Содержание}\markboth{Содержание}{}\@starttoc{toc}\newpage}
+\makeatother
+\titlecontents{section}[1.5em]{}{\contentslabel[\thecontentslabel.]{1.5em}}{}{\rule{0.1cm}{0pt}\titlerule[0.75pc]{.}\contentspage}
+\titlecontents{subsection}[4em]{\vspace{0.05em}}{\contentslabel[\thecontentslabel.]{2em}}{}{\rule{0.1cm}{0pt}\titlerule[0.75pc]{.}\contentspage}
+
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+%========
+%=Списки=
+%========
+\usepackage{enumitem}
+\makeatletter
+\AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
+\makeatother
+\setlist{nolistsep, topsep=0.375em}
+\setenumerate{leftmargin=2cm, labelsep=0em, labelwidth=0.75cm, align=left}
+\setitemize{leftmargin=2cm, labelsep=0em, labelwidth=0.75cm, align=left}
+\renewcommand{\labelitemi}{--}
+\renewcommand{\labelenumi}{\arabic{enumi})}
+\renewcommand{\labelenumii}{\asbuk{enumii})}
+\renewcommand{\labelenumiii}{--}
+
+%==========================
+%=Математические операторы=
+%==========================
+\DeclareMathOperator{\mob}{Mob}
+\DeclareMathOperator{\fix}{Fix}
+\DeclareMathOperator{\ord}{ord}
+
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}%for graph
+
+\usepackage{neuralnetwork}
+
+% гиперссылки
+\usepackage[hidelinks]{hyperref}
+
+%заглавные римские цифры
+\newcommand{\RomanNumeralCaps}[1]
+{\MakeUppercase{\romannumeral #1}}
+
+% текстовый филлер для заполнения пропущенных глав
+\usepackage{lipsum}  
+
+% двухколоночный оператор
+\usepackage{multicol}
+
+% операнд для поворота таблиц
+\usepackage{rotating}
+
+%=======================
+%=Дополнительные пакеты=
+%=======================
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{caption} 
+\usepackage{makecell}
+
+\begin{document}
+
+\thispagestyle{empty}
+\small
+\begin{center}
+    \includegraphics[width=4.55cm]{logo_mirea}\\
+    \MakeUppercase{Минобрнауки России}\\[1em]
+    Федеральное государственное бюджетное образовательное учреждение\\
+    высшего образования\\[0.5em]
+    \textbf{<<МИРЭА -- Российский технологический университет>>}\\
+    \textbf{РТУ МИРЭА}\\
+    \rule{\textwidth}{0.75pt}\\
+    Институт искусственного интеллекта\\
+    Базовая кафедра №252 -- информационной безопасности\\[-0.45em]
+    \rule{\textwidth}{0.75pt}\\[5em]
+    \normalsize\MakeUppercase{\textbf{Выпускная Квалификационная Работа}}\small\\[0.5em]
+    Тема:\\ \textbf{<<Устройство и анализ алгоритмов по обходу DPI>>} \\[3em]
+    \begin{tabular}{p{7cm}p{6cm}c}
+        Студент группы ККСО-03-19    & Николенко В.О.                                      & \rule{2cm}{0.75pt}                    \\[-0.5em]
+                                     &                                                     & \footnotesize\textit{(подпись)}\small \\[1em]
+        Научниый руководитель        & Жанкевич А.О.                                       & \rule{2cm}{0.75pt}                    \\[-0.5em]
+                                     &                                                     & \footnotesize\textit{(подпись)}\small \\[5em]
+        Работа представлена к защите & <<\rule{0.5cm}{0.75pt}>> \rule{2cm}{0.75pt} 2023 г. &                                       \\[1em]
+        Оценка:                      & <<\rule{0.5cm}{0.75pt}>>                            &                                       \\[1em]
+    \end{tabular}
+    \vfill
+    Москва -- 2024
+\end{center}
+\normalsize
+\newpage
+
+% Содержание
+\tableofcontents
+
+% \begin{multicols}{2}
+% \end{multicols}
+
+% ===============
+% === 1 глава ===
+% ===============
+\newpage
+\section{Введение}
+
+В наше время информационные технологии развиваются уже далеко не семимильными шагами, с каждым годом
+появляется все больше методов передачи, шифрования, кодирования, анализа трафика, такие технологии как:
+TCP, UDP, TSL, SSL, HTTP, HTTPS, различные подписи с использованием эллиптических кривых, RSA, различные
+способы распределения ключей между клиентом и сервером.
+
+Так как трафик это общение не только между машинами, но и между людьми\dots
+
+\lipsum[1]
+
+% ===============
+% === 2 глава ===
+% ===============
+
+\newpage
+\section{Теоретическая Часть}
+
+Давайте однозначно определим терминологию данной работы, с целью исключить недопонимания между
+её авторами и читателями.
+
+\textbf{\textit{DPI}} (англ. Deep Packet Inspection "глубокий анализ пакетов") - технология проверки сетевых пакетов по их содержимому
+с целью регулирования и фильтрации трафика, а также накопления статистических данных. В отличие от брандмауэров, DPI
+анализирует не только заголовки пакетов, но и полезную нагрузку, начиная со второго уровня модели OSI (канальный).
+
+\textbf{\textit{OSI}} (англ. Open Systems Interconnection "межсетевое взаимодействие открытых систем") - абстрактная модель представления
+одних и тех же данных, с которыми можно работать на разных уровнях, предлагаемых данной моделью: физическом, канальном,
+сетевом, транспортном, сеансовом, уровне представления, прикладном.
+
+\textbf{\textit{Физический Уровень}} - передача необработанных битов по физическим носителям (кабели, радиосигналы).\\
+\textit{Примеры протоколов:} Ethernet (физический аспект) USB, Bluetooth.
+
+\textbf{\textit{Канальный Уровень}} - организация надежной передачи данных между узлами одной сети; управление доступом к среде,
+обнаружение ошибок.\\
+\textit{Примеры протоколов:} Ethernet (кадры), Wi-Fi (IEEE 802.11), PPP (Point-to-Point Protocol).
+
+\textbf{\textit{Сетевой Уровень}} - маршрутизация и передача пакетов данных между различными сетями.\\
+\textit{Примеры протоколов:} IP (Internet Protocol), ICMP (Internet Control Message Protocol), IPSec (для обеспечения безопасности).
+
+\textbf{\textit{Транспортный Уровень}} - обеспечение надежной передачи данных, контроль ошибок, восстановление соединений (TCP/UDP).\\
+\textit{Примеры протоколов:} TCP (Transmission Control Protocol), UDP (User Datagram Protocol), SCTP (Stream Control Transmission Protocol).
+
+\textbf{\textit{Сеансовый Уровень}} - управление сессиями, установление, поддержание и завершение сеансов связи между приложениями.\\
+\textit{Примеры протоколов:} NetBIOS, PPTP (Point-to-Point Tunneling Protocol), RPC (Remote Procedure Call).
+
+\textbf{\textit{Уровень Представления}} - преобразование данных для представления их в удобном для приложений формате (шифрование, сжатие).\\
+\textit{Примеры протоколов:} SSL/TLS (для шифрования), JPEG, PNG (для изображения), ASCII, EBCDIC (кодировки данных).
+
+\textbf{\textit{Прикладной Уровень}} - взаимодействие с конечным пользователем через приложения (веб-браузеры, почтовые клиенты и т. д.).\\
+\textit{Примеры протоколов:} HTTP/HTTPS (веб-приложения), FTP (передача файлов), SMTP (электронная почта), DNS (система доменных имен).
+
+\textbf{\textit{Шифрование}} - процесс преобразования данных \textit{(посредством таких операций как: линейных и нелинейных преобразований,
+    наложения гаммы, и матричных преобразовний)} в форму, непонятную без ключа. Используется для обеспечения конфиденциальности
+информации (например, в коммуникациях).
+
+\textbf{\textit{Дешифрование}} - обратный процесс к шифрованию, преобразующий зашифрованные данные обратно в исходный вид с помощью ключа.
+
+\textbf{\textit{Кодирование}} - преобразование данных в другой формат для удобства передачи или хранения (например, Base64 для передачи
+бинарных данных через текстовые протоколы). Кодирование не является средством защиты.
+
+\textbf{\textit{Хеширование}} - одностороннее преобразование данных в уникальную фиксированную строку (хеш), которое невозможно обратным
+образом восстановить. Используется для проверки целостности данных, паролей и цифровых подписей.
+
+
+% ============================
+% === 6 глава - Заключение ===
+% ============================
+
+\newpage
+\section{Заключение}
+
+
+% ===================================
+% === 7 глава - Список литературы ===
+% ===================================
+
+\newpage
+\section{Список литературы}
+
+\end{document}
